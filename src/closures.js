@@ -172,6 +172,27 @@ function hasProperties( dict )
 		return true;
 	} 
 }
+function propertiesCount( v )
+{
+	if( v instanceof Function )
+		return function ( o ) 
+		{
+			var a = [];
+			for ( var i in o ) 
+				a.push(i);
+			
+			return v( a.length );
+		};
+	else 
+		return function ( o ) 
+		{
+			var a = [];
+			for ( var i in o ) 
+				a.push(i);
+			
+			return a.length == v;
+		};
+}
 // arrays
 function matchCycle ()
 {
