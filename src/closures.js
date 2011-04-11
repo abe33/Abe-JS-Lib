@@ -2,9 +2,9 @@
 function not( f ) 
 {
     if( f instanceof Function )
-        return function( o ) { return !f.apply( null, arguments ); };
+        return function( o ) { return !f( o ); };
     else
-        return function( o ) { return o != f };
+        return function( o ) { return o != f; };
 }
 function equalTo ( n )
 {
@@ -69,7 +69,7 @@ function anyOf ()
             var f = args[i];
             if( f instanceof Function )
             {
-                if( f.apply( null, arguments ) )
+                if( f( o ) )
                     return true;
             }
             else
@@ -78,7 +78,7 @@ function anyOf ()
                     return true;
             }
         }
-        return true;
+        return false;
     };
 }
 // numbers
